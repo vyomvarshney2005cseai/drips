@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Drip Steps & Wordrobe — Premium streetwear brand. Shop exclusive tees, hoodies, and more. Order via WhatsApp."/>
+<meta name="keywords" content="streetwear, drip steps wordrobe, premium tshirts, hoodies, urban fashion India"/>
+<meta name="theme-color" content="#000000"/>
+<title>Drip Steps & Wordrobe | Premium Streetwear</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Unbounded:wght@200;400;700;900&display=swap" rel="stylesheet"/>
+<style>
+/* ─── CONFIG ─── */
+:root{
+  --black:#000;--white:#fff;--grey:#111;--mid:#222;--line:#333;
+  --accent:#fff;--muted:#888;--warn:#ff3b3b;
+  --font-display:'Bebas Neue',sans-serif;
+  --font-body:'DM Mono',monospace;
+  --font-heavy:'Unbounded',sans-serif;
+  --radius:0px;--trans:.25s ease;
+}
+
+/* ─── RESET ─── */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:16px}
+body{background:var(--black);color:var(--white);font-family:var(--font-body);overflow-x:hidden;min-height:100vh;cursor:none}
+
+/* ─── CUSTOM CURSOR ─── */
+#cursor{position:fixed;width:16px;height:16px;background:var(--white);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s,opacity .2s;mix-blend-mode:difference}
+#cursor-ring{position:fixed;width:40px;height:40px;border:1px solid rgba(255,255,255,.5);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .15s ease;mix-blend-mode:difference}
+body:not(.touch) *{cursor:none!important}
+
+/* ─── GRAIN OVERLAY ─── */
+body::before{
+  content:'';position:fixed;inset:0;z-index:9000;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity:.6;
+}
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--black)}
+::-webkit-scrollbar-thumb{background:var(--mid)}
+
+/* ─── NAV ─── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 24px;height:60px;border-bottom:1px solid var(--line);
+  background:rgba(0,0,0,.92);backdrop-filter:blur(12px);
+}
+.nav-logo{
+  font-family:var(--font-display);font-size:22px;letter-spacing:3px;
+  color:var(--white);text-decoration:none;white-space:nowrap;
+  transition:opacity var(--trans);
+}
+.nav-logo:hover{opacity:.7}
+.nav-links{display:flex;gap:24px;list-style:none;align-items:center}
+.nav-links a{
+  font-family:var(--font-body);font-size:10px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;transition:color var(--trans);font-weight:400;
+}
+.nav-links a:hover,.nav-links a.active{color:var(--white)}
+.nav-admin-btn{
+  font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);
+  background:none;border:1px solid var(--line);padding:6px 12px;font-family:var(--font-body);
+  transition:all var(--trans);
+}
+.nav-admin-btn:hover{color:var(--white);border-color:var(--white)}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;padding:4px}
+.hamburger span{width:24px;height:1px;background:var(--white);display:block;transition:all .3s}
+.hamburger.open span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+
+/* ─── MOBILE MENU ─── */
+.mobile-menu{
+  display:none;position:fixed;top:60px;left:0;right:0;bottom:0;
+  background:var(--black);z-index:999;flex-direction:column;
+  align-items:center;justify-content:center;gap:32px;
+}
+.mobile-menu.open{display:flex}
+.mobile-menu a{
+  font-family:var(--font-display);font-size:48px;letter-spacing:4px;
+  color:var(--white);text-decoration:none;opacity:.8;transition:opacity var(--trans);
+}
+.mobile-menu a:hover{opacity:1}
+
+/* ─── PAGES ─── */
+.page{display:none;min-height:100vh;padding-top:60px}
+.page.active{display:block}
+
+/* ─── HERO ─── */
+.hero{
+  height:calc(100vh - 60px);display:flex;flex-direction:column;
+  align-items:center;justify-content:center;position:relative;overflow:hidden;
+  border-bottom:1px solid var(--line);
+}
+.hero-bg-text{
+  position:absolute;font-family:var(--font-display);
+  font-size:clamp(100px,20vw,280px);color:rgba(255,255,255,.04);
+  letter-spacing:-4px;user-select:none;line-height:1;text-align:center;
+  white-space:nowrap;
+}
+.hero-content{text-align:center;position:relative;z-index:2;padding:24px}
+.hero-eyebrow{
+  font-size:10px;letter-spacing:6px;text-transform:uppercase;color:var(--muted);
+  margin-bottom:24px;font-family:var(--font-body);
+}
+.hero-title{
+  font-family:var(--font-display);font-size:clamp(52px,12vw,160px);
+  line-height:.9;letter-spacing:2px;margin-bottom:8px;
+}
+.hero-title span{display:block}
+.hero-subtitle{
+  font-family:var(--font-heavy);font-size:clamp(8px,1.5vw,12px);
+  letter-spacing:8px;text-transform:uppercase;color:var(--muted);
+  margin-bottom:40px;font-weight:200;
+}
+.hero-cta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--font-body);font-size:10px;letter-spacing:3px;text-transform:uppercase;
+  padding:14px 28px;text-decoration:none;transition:all var(--trans);border:1px solid;
+  font-weight:500;
+}
+.btn-primary{background:var(--white);color:var(--black);border-color:var(--white)}
+.btn-primary:hover{background:transparent;color:var(--white)}
+.btn-secondary{background:transparent;color:var(--white);border-color:var(--line)}
+.btn-secondary:hover{border-color:var(--white)}
+.btn-whatsapp{background:#25D366;color:#fff;border-color:#25D366;font-size:9px}
+.btn-whatsapp:hover{background:transparent;color:#25D366}
+.btn-sm{padding:10px 20px;font-size:9px}
+.hero-scroll{
+  position:absolute;bottom:28px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:6px;pointer-events:none;
+}
+.hero-scroll span{font-size:8px;letter-spacing:4px;color:var(--muted);text-transform:uppercase;white-space:nowrap}
+.scroll-arrow{
+  width:28px;height:28px;border-right:1px solid var(--muted);border-bottom:1px solid var(--muted);
+  transform:rotate(45deg);margin-top:-8px;
+  animation:arrowPulse 2s ease-in-out infinite;
+}
+@keyframes arrowPulse{0%,100%{opacity:.3;transform:rotate(45deg) translateY(-3px)}50%{opacity:1;transform:rotate(45deg) translateY(3px)}}
+
+/* ─── MARQUEE ─── */
+.marquee-wrap{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;white-space:nowrap;padding:12px 0}
+.marquee-track{display:inline-flex;animation:marquee 20s linear infinite}
+.marquee-track:hover{animation-play-state:paused}
+.marquee-item{
+  font-family:var(--font-display);font-size:13px;letter-spacing:4px;
+  color:var(--muted);text-transform:uppercase;padding:0 32px;
+}
+.marquee-dot{color:var(--white);font-size:6px;vertical-align:middle}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ─── SECTION ─── */
+.section{padding:80px 24px}
+.section-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:48px;border-bottom:1px solid var(--line);padding-bottom:20px}
+.section-label{font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.section-title{font-family:var(--font-display);font-size:clamp(32px,5vw,64px);letter-spacing:2px;line-height:1}
+.section-link{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color var(--trans);white-space:nowrap}
+.section-link:hover{color:var(--white)}
+.max-w{max-width:1200px;margin:0 auto}
+
+/* ─── PRODUCT GRID ─── */
+.product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1px;background:var(--line)}
+.product-card{
+  background:var(--black);position:relative;overflow:hidden;
+  transition:transform var(--trans);
+}
+.product-card:hover{z-index:2}
+.product-img-wrap{position:relative;aspect-ratio:3/4;overflow:hidden;background:var(--grey)}
+.product-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.product-card:hover .product-img-wrap img{transform:scale(1.06)}
+.product-img-placeholder{
+  width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:var(--grey);gap:12px;
+}
+.product-img-placeholder .ph-icon{font-size:48px;opacity:.2}
+.product-img-placeholder .ph-text{font-size:9px;letter-spacing:2px;color:var(--muted);text-transform:uppercase}
+.product-badge{
+  position:absolute;top:12px;left:12px;font-family:var(--font-body);font-size:8px;
+  letter-spacing:3px;text-transform:uppercase;padding:4px 10px;z-index:3;
+}
+.badge-new{background:var(--white);color:var(--black)}
+.badge-sold{background:var(--warn);color:var(--white)}
+.badge-hot{background:#ff6b00;color:var(--white)}
+.product-info{padding:16px}
+.product-name{font-family:var(--font-heavy);font-size:12px;letter-spacing:1px;font-weight:700;margin-bottom:6px;text-transform:uppercase}
+.product-price{font-family:var(--font-display);font-size:28px;letter-spacing:1px;margin-bottom:10px}
+.product-sizes{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.size-chip{
+  font-size:8px;letter-spacing:2px;padding:6px 10px;border:1px solid var(--line);
+  color:var(--muted);text-transform:uppercase;transition:all var(--trans);
+  cursor:pointer;user-select:none;background:transparent;font-family:var(--font-body);
+}
+.size-chip:hover{border-color:var(--white);color:var(--white)}
+.size-chip.selected{border-color:var(--white);background:var(--white);color:var(--black);font-weight:500}
+.size-label{font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;display:block}
+.product-actions{display:flex;gap:8px}
+.product-actions .btn{flex:1;justify-content:center;font-size:8px;padding:10px 8px}
+.product-overlay{
+  position:absolute;inset:0;background:rgba(0,0,0,.9);display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:16px;opacity:0;transition:opacity var(--trans);
+  padding:24px;
+}
+.product-card:hover .product-overlay{opacity:0} /* kept off for now, using inline form */
+
+/* ─── SOLD OUT overlay ─── */
+.sold-overlay{
+  position:absolute;inset:0;background:rgba(0,0,0,.75);display:flex;
+  align-items:center;justify-content:center;z-index:4;
+}
+.sold-overlay span{
+  font-family:var(--font-display);font-size:32px;letter-spacing:4px;
+  color:var(--warn);border:2px solid var(--warn);padding:8px 20px;
+  transform:rotate(-12deg);
+}
+
+/* ─── ORDER MODAL ─── */
+.modal-bg{
+  position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:2000;
+  display:none;align-items:flex-end;justify-content:center;
+}
+.modal-bg.open{display:flex}
+@media(min-width:600px){.modal-bg.open{align-items:center}}
+.modal{
+  background:var(--grey);width:100%;max-width:480px;max-height:90vh;
+  overflow-y:auto;border-top:1px solid var(--line);padding:32px 24px;
+  animation:slideUp .3s ease;
+}
+@media(min-width:600px){.modal{border:1px solid var(--line);border-radius:2px;animation:fadeIn .3s ease}}
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.modal-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:24px}
+.modal-title{font-family:var(--font-display);font-size:36px;letter-spacing:2px;line-height:1}
+.modal-product-name{font-size:9px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-top:4px}
+.modal-close{background:none;border:1px solid var(--line);color:var(--white);width:32px;height:32px;font-size:16px;transition:all var(--trans);flex-shrink:0}
+.modal-close:hover{border-color:var(--white)}
+.form-group{margin-bottom:20px}
+.form-label{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;display:block}
+.form-input,.form-select,.form-textarea{
+  width:100%;background:var(--black);border:1px solid var(--line);color:var(--white);
+  font-family:var(--font-body);font-size:13px;padding:12px 14px;
+  transition:border-color var(--trans);outline:none;
+}
+.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--white)}
+.form-select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23888' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+.form-select option{background:var(--black)}
+.form-textarea{resize:vertical;min-height:80px}
+.size-selector{display:flex;flex-wrap:wrap;gap:8px}
+.size-btn{
+  background:none;border:1px solid var(--line);color:var(--muted);
+  font-family:var(--font-body);font-size:10px;letter-spacing:2px;
+  padding:8px 14px;text-transform:uppercase;transition:all var(--trans);
+}
+.size-btn:hover,.size-btn.active{border-color:var(--white);color:var(--white);background:var(--white);color:var(--black)}
+.whatsapp-submit{
+  width:100%;padding:16px;background:#25D366;color:#fff;border:none;
+  font-family:var(--font-body);font-size:11px;letter-spacing:3px;text-transform:uppercase;
+  font-weight:500;margin-top:8px;transition:opacity var(--trans);display:flex;align-items:center;justify-content:center;gap:8px;
+}
+.whatsapp-submit:hover{opacity:.9}
+.form-note{font-size:9px;color:var(--muted);letter-spacing:1px;text-align:center;margin-top:12px}
+
+/* ─── ABOUT PAGE ─── */
+.about-hero{height:50vh;display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+.about-bg{position:absolute;font-family:var(--font-display);font-size:clamp(80px,15vw,200px);color:rgba(255,255,255,.03);letter-spacing:-4px;user-select:none}
+.about-content{max-width:680px;margin:0 auto;padding:80px 24px}
+.about-content h2{font-family:var(--font-display);font-size:clamp(36px,5vw,72px);margin-bottom:24px;letter-spacing:2px}
+.about-content p{color:var(--muted);line-height:1.9;font-size:13px;margin-bottom:20px;letter-spacing:.5px}
+.about-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);margin:48px 0;border:1px solid var(--line)}
+.stat-box{padding:32px 24px;text-align:center;background:var(--black)}
+.stat-num{font-family:var(--font-display);font-size:56px;display:block;line-height:1}
+.stat-label{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);display:block;margin-top:4px}
+
+/* ─── DELIVERY PAGE ─── */
+.delivery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.delivery-card{background:var(--black);padding:32px 24px}
+.delivery-icon{font-size:32px;margin-bottom:16px;display:block}
+.delivery-card h3{font-family:var(--font-display);font-size:28px;letter-spacing:2px;margin-bottom:12px}
+.delivery-card p{font-size:12px;color:var(--muted);line-height:1.8;letter-spacing:.5px}
+.delivery-table{width:100%;border-collapse:collapse;margin-top:32px}
+.delivery-table th,.delivery-table td{padding:14px 16px;text-align:left;border-bottom:1px solid var(--line);font-size:12px}
+.delivery-table th{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted)}
+
+/* ─── CONTACT PAGE ─── */
+.contact-wrap{max-width:600px;margin:0 auto;padding:80px 24px;text-align:center}
+.contact-wrap h1{font-family:var(--font-display);font-size:clamp(48px,8vw,100px);letter-spacing:2px;margin-bottom:16px;line-height:1}
+.contact-wrap p{color:var(--muted);font-size:13px;letter-spacing:.5px;line-height:1.8;margin-bottom:48px}
+.contact-links{display:flex;flex-direction:column;gap:16px}
+.contact-link{
+  display:flex;align-items:center;justify-content:space-between;
+  border:1px solid var(--line);padding:20px 24px;text-decoration:none;
+  color:var(--white);transition:all var(--trans);
+}
+.contact-link:hover{border-color:var(--white);background:rgba(255,255,255,.03)}
+.contact-link-label{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted)}
+.contact-link-value{font-family:var(--font-display);font-size:22px;letter-spacing:1px}
+.contact-link-arrow{font-size:20px;color:var(--muted)}
+
+/* ─── ADMIN ─── */
+.admin-login{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+.admin-login-box{max-width:360px;width:100%;border:1px solid var(--line);padding:48px 32px}
+.admin-login-box h2{font-family:var(--font-display);font-size:48px;letter-spacing:2px;margin-bottom:8px}
+.admin-login-box p{font-size:10px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:32px}
+.login-error{color:var(--warn);font-size:10px;letter-spacing:1px;margin-top:8px;display:none}
+.admin-panel{max-width:1100px;margin:0 auto;padding:24px}
+.admin-topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;border-bottom:1px solid var(--line);padding-bottom:16px}
+.admin-topbar h2{font-family:var(--font-display);font-size:36px;letter-spacing:2px}
+.admin-topbar-right{display:flex;align-items:center;gap:12px}
+.admin-tabs{display:flex;gap:0;margin-bottom:32px;border:1px solid var(--line)}
+.admin-tab{
+  flex:1;padding:12px;text-align:center;background:none;border:none;color:var(--muted);
+  font-family:var(--font-body);font-size:9px;letter-spacing:3px;text-transform:uppercase;
+  transition:all var(--trans);border-right:1px solid var(--line);
+}
+.admin-tab:last-child{border-right:none}
+.admin-tab.active,.admin-tab:hover{background:var(--white);color:var(--black)}
+.admin-section{display:none}
+.admin-section.active{display:block}
+
+/* Add Product Form */
+.add-product-form{border:1px solid var(--line);padding:32px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.img-upload-area{
+  border:1px dashed var(--line);aspect-ratio:3/4;max-width:200px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+  cursor:pointer;transition:border-color var(--trans);position:relative;overflow:hidden;
+}
+.img-upload-area:hover{border-color:var(--white)}
+.img-upload-area img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.img-upload-area .upload-hint{font-size:9px;letter-spacing:2px;color:var(--muted);text-align:center;text-transform:uppercase;position:relative}
+.img-upload-area .upload-icon{font-size:32px;position:relative}
+.img-file-input{position:absolute;inset:0;opacity:0;cursor:pointer}
+.size-checkboxes{display:flex;flex-wrap:wrap;gap:8px}
+.size-check-label{
+  display:flex;align-items:center;gap:6px;border:1px solid var(--line);
+  padding:6px 12px;cursor:pointer;font-size:10px;letter-spacing:2px;text-transform:uppercase;
+  transition:all var(--trans);
+}
+.size-check-label input{display:none}
+.size-check-label.checked{border-color:var(--white);background:var(--white);color:var(--black)}
+
+/* Admin Product List */
+.admin-product-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+.admin-product-card{border:1px solid var(--line);overflow:hidden}
+.admin-product-img{aspect-ratio:4/3;background:var(--grey);overflow:hidden}
+.admin-product-img img{width:100%;height:100%;object-fit:cover}
+.admin-product-img .no-img{display:flex;align-items:center;justify-content:center;height:100%;font-size:9px;letter-spacing:2px;color:var(--muted);text-transform:uppercase}
+.admin-product-info{padding:14px}
+.admin-product-info .ap-name{font-size:11px;font-weight:500;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px}
+.admin-product-info .ap-price{font-family:var(--font-display);font-size:24px;margin-bottom:8px}
+.admin-product-info .ap-status{font-size:8px;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
+.status-available{color:#25D366}
+.status-sold{color:var(--warn)}
+.admin-actions{display:flex;gap:6px;flex-wrap:wrap}
+.admin-btn{
+  font-size:8px;letter-spacing:2px;text-transform:uppercase;padding:6px 10px;
+  border:1px solid;background:none;font-family:var(--font-body);transition:all var(--trans);
+}
+.admin-btn-danger{border-color:var(--warn);color:var(--warn)}
+.admin-btn-danger:hover{background:var(--warn);color:var(--white)}
+.admin-btn-neutral{border-color:var(--line);color:var(--muted)}
+.admin-btn-neutral:hover{border-color:var(--white);color:var(--white)}
+.admin-btn-warn{border-color:#ff6b00;color:#ff6b00}
+.admin-btn-warn:hover{background:#ff6b00;color:var(--white)}
+
+/* ─── FOOTER ─── */
+footer{border-top:1px solid var(--line);padding:48px 24px 32px}
+.footer-inner{max-width:1200px;margin:0 auto}
+.footer-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:32px;margin-bottom:48px}
+.footer-brand h3{font-family:var(--font-display);font-size:36px;letter-spacing:3px;margin-bottom:8px}
+.footer-brand p{font-size:10px;color:var(--muted);letter-spacing:1px;max-width:240px;line-height:1.8}
+.footer-links h4{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+.footer-links ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.footer-links li a{font-size:12px;color:var(--white);text-decoration:none;opacity:.6;transition:opacity var(--trans)}
+.footer-links li a:hover{opacity:1}
+.footer-social{display:flex;gap:12px;margin-top:16px}
+.social-btn{
+  border:1px solid var(--line);padding:8px 16px;font-size:9px;letter-spacing:2px;
+  text-transform:uppercase;text-decoration:none;color:var(--muted);transition:all var(--trans);
+  display:flex;align-items:center;gap:6px;
+}
+.social-btn:hover{border-color:var(--white);color:var(--white)}
+.footer-bottom{border-top:1px solid var(--line);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-bottom p{font-size:9px;color:var(--muted);letter-spacing:1px}
+
+/* ─── STOCK BADGE ─── */
+.product-stock{
+  font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);
+  margin-bottom:10px;display:flex;align-items:center;gap:6px;
+}
+.product-stock .stock-dot{
+  width:6px;height:6px;border-radius:50%;display:inline-block;
+}
+.stock-dot.in-stock{background:#25D366}
+.stock-dot.low-stock{background:#ff6b00}
+.stock-dot.no-stock{background:var(--warn)}
+.product-stock .stock-count{color:var(--white);font-weight:500}
+.product-stock.out{color:var(--warn)}
+
+/* ─── ORDER HISTORY ─── */
+.order-card{
+  border:1px solid var(--line);padding:20px 24px;margin-bottom:12px;
+  transition:all var(--trans);position:relative;overflow:hidden;
+}
+.order-card::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
+}
+.order-card.status-active::before{background:#25D366}
+.order-card.status-cancelled::before{background:var(--warn)}
+.order-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.order-id{font-family:var(--font-display);font-size:20px;letter-spacing:1px}
+.order-status-badge{
+  font-size:8px;letter-spacing:2px;text-transform:uppercase;padding:4px 10px;
+  border:1px solid;
+}
+.order-status-badge.active{border-color:#25D366;color:#25D366}
+.order-status-badge.cancelled{border-color:var(--warn);color:var(--warn)}
+.order-details{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin-bottom:12px}
+.order-detail-item{font-size:11px;color:var(--muted);letter-spacing:.5px}
+.order-detail-item strong{color:var(--white);display:block;margin-top:2px}
+.cancel-btn{
+  font-size:8px;letter-spacing:2px;text-transform:uppercase;padding:8px 16px;
+  border:1px solid var(--warn);color:var(--warn);background:none;
+  font-family:var(--font-body);transition:all var(--trans);cursor:pointer;
+}
+.cancel-btn:hover{background:var(--warn);color:var(--white)}
+
+/* ─── TOAST ─── */
+.toast{
+  position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);
+  background:var(--white);color:var(--black);padding:12px 24px;font-size:10px;letter-spacing:2px;
+  text-transform:uppercase;z-index:5000;opacity:0;transition:all .3s ease;pointer-events:none;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ─── ANIMATIONS ─── */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+.reveal-delay-4{transition-delay:.4s}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:768px){
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .form-row{grid-template-columns:1fr}
+  .footer-top{flex-direction:column}
+  .footer-bottom{flex-direction:column;text-align:center}
+  .about-stats{grid-template-columns:repeat(3,1fr)}
+  .section-header{flex-direction:column;align-items:flex-start;gap:12px}
+  .product-grid{grid-template-columns:repeat(2,1fr)}
+  .hero-cta{flex-direction:column;align-items:center}
+  .stat-num{font-size:36px}
+  .admin-topbar{flex-direction:column;align-items:flex-start;gap:12px}
+}
+@media(max-width:400px){
+  .product-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ─── CURSOR ─── -->
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- ─── TOAST ─── -->
+<div class="toast" id="toast"></div>
+
+<!-- ─── NAV ─── -->
+<nav>
+  <a class="nav-logo" href="#" onclick="showPage('home');return false">DS&W</a>
+  <ul class="nav-links">
+    <li><a href="#" onclick="showPage('home');return false" data-page="home">Home</a></li>
+    <li><a href="#" onclick="showPage('shop');return false" data-page="shop">Shop</a></li>
+    <li><a href="#" onclick="showPage('orders');return false" data-page="orders">My Orders</a></li>
+    <li><a href="#" onclick="showPage('about');return false" data-page="about">About</a></li>
+    <li><a href="#" onclick="showPage('delivery');return false" data-page="delivery">Delivery</a></li>
+    <li><a href="#" onclick="showPage('contact');return false" data-page="contact">Contact</a></li>
+  </ul>
+  <button class="nav-admin-btn" onclick="showPage('admin');return false">Admin ↗</button>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ─── MOBILE MENU ─── -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#" onclick="showPage('home');toggleMenu();return false">Home</a>
+  <a href="#" onclick="showPage('shop');toggleMenu();return false">Shop</a>
+  <a href="#" onclick="showPage('orders');toggleMenu();return false">My Orders</a>
+  <a href="#" onclick="showPage('about');toggleMenu();return false">About</a>
+  <a href="#" onclick="showPage('delivery');toggleMenu();return false">Delivery</a>
+  <a href="#" onclick="showPage('contact');toggleMenu();return false">Contact</a>
+</div>
+
+<!-- ═══════════════ HOME PAGE ═══════════════ -->
+<div class="page active" id="page-home">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg-text">DRIP</div>
+    <div class="hero-content">
+      <p class="hero-eyebrow reveal">Premium Streetwear · Est. 2026</p>
+      <h1 class="hero-title reveal reveal-delay-1">
+        <span>DRIP</span>
+        <span>STEPS &</span>
+        <span>WORDROBE</span>
+      </h1>
+      <p class="hero-subtitle reveal reveal-delay-2">Wear Your Identity</p>
+      <div class="hero-cta reveal reveal-delay-3">
+        <a class="btn btn-primary" href="#" onclick="showPage('shop');return false">Shop Now</a>
+        <a class="btn btn-secondary" href="https://instagram.com/drip_steps__wordrobe" target="_blank">Instagram ↗</a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <span class="marquee-item">Premium Streetwear <span class="marquee-dot">◆</span></span>
+      <span class="marquee-item">Cash on Delivery <span class="marquee-dot">◆</span></span>
+      <span class="marquee-item">Drip Steps & Wordrobe <span class="marquee-dot">◆</span></span>
+      <span class="marquee-item">Hathras, Uttar Pradesh <span class="marquee-dot">◆</span></span>
+      <span class="marquee-item">WhatsApp Orders <span class="marquee-dot">◆</span></span>
+      <span class="marquee-item">Premium Quality <span class="marquee-dot">◆</span></span>
+      <span class="marquee-item">Exclusive Drops <span class="marquee-dot">◆</span></span>
+      <span class="marquee-item">Limited Edition <span class="marquee-dot">◆</span></span>
+      <!-- duplicate for seamless loop -->
+      <span class="marquee-item">Premium Streetwear <span class="marquee-dot">◆</span></span>
+      <span class="marquee-item">Cash on Delivery <span class="marquee-dot">◆</span></span>
+      <span class="marquee-item">Drip Steps & Wordrobe <span class="marquee-dot">◆</span></span>
+      <span class="marquee-item">Hathras, Uttar Pradesh <span class="marquee-dot">◆</span></span>
+      <span class="marquee-item">WhatsApp Orders <span class="marquee-dot">◆</span></span>
+      <span class="marquee-item">Premium Quality <span class="marquee-dot">◆</span></span>
+      <span class="marquee-item">Exclusive Drops <span class="marquee-dot">◆</span></span>
+      <span class="marquee-item">Limited Edition <span class="marquee-dot">◆</span></span>
+    </div>
+  </div>
+
+  <!-- FEATURED PRODUCTS -->
+  <section class="section">
+    <div class="max-w">
+      <div class="section-header reveal">
+        <div>
+          <div class="section-label">Handpicked</div>
+          <div class="section-title">FEATURED DROPS</div>
+        </div>
+        <a href="#" onclick="showPage('shop');return false" class="section-link">View All →</a>
+      </div>
+      <div class="product-grid" id="featured-grid">
+        <!-- injected by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- NEW ARRIVALS -->
+  <section class="section" style="padding-top:0">
+    <div class="max-w">
+      <div class="section-header reveal">
+        <div>
+          <div class="section-label">Just In</div>
+          <div class="section-title">NEW ARRIVALS</div>
+        </div>
+        <a href="#" onclick="showPage('shop');return false" class="section-link">View All →</a>
+      </div>
+      <div class="product-grid" id="new-arrivals-grid">
+        <!-- injected by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- BRAND STATEMENT -->
+  <section style="border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:80px 24px;text-align:center;overflow:hidden">
+    <div class="max-w">
+      <p class="reveal" style="font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-bottom:24px">Our Philosophy</p>
+      <h2 class="reveal reveal-delay-1" style="font-family:var(--font-display);font-size:clamp(36px,6vw,90px);letter-spacing:2px;line-height:1;max-width:900px;margin:0 auto 32px">
+        FASHION IS NOT JUST CLOTHING. IT IS ATTITUDE.
+      </h2>
+      <p class="reveal reveal-delay-2" style="font-size:12px;color:var(--muted);max-width:480px;margin:0 auto 40px;line-height:1.8;letter-spacing:.5px">
+        Every piece in our collection is designed to make a statement. We don't follow trends — we set them.
+      </p>
+      <div class="reveal reveal-delay-3" style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+        <a href="https://instagram.com/drip_steps__wordrobe" target="_blank" class="btn btn-secondary">Follow on Instagram ↗</a>
+        <a href="#" onclick="showPage('about');return false" class="btn btn-secondary">Our Story →</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <h3>DS&W</h3>
+          <p>Drip Steps & Wordrobe — Premium streetwear for those who dare to stand out. Delivering in Hathras, UP 204101.</p>
+          <div class="footer-social" style="margin-top:20px">
+            <a href="https://instagram.com/drip_steps__wordrobe" target="_blank" class="social-btn">📸 Instagram</a>
+            <a href="https://wa.me/919999999999" target="_blank" class="social-btn" id="footer-wa">💬 WhatsApp</a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="#" onclick="showPage('shop');return false">All Products</a></li>
+            <li><a href="#" onclick="showPage('shop');return false">New Arrivals</a></li>
+            <li><a href="#" onclick="showPage('shop');return false">Featured Drops</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Info</h4>
+          <ul>
+            <li><a href="#" onclick="showPage('about');return false">About Us</a></li>
+            <li><a href="#" onclick="showPage('delivery');return false">Delivery Info</a></li>
+            <li><a href="#" onclick="showPage('contact');return false">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Drip Steps & Wordrobe. All rights reserved.</p>
+        <p>Made for <strong>@drip_steps__wordrobe</strong></p>
+        <p>Cash on Delivery · Hathras, UP 204101 Only</p>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ═══════════════ SHOP PAGE ═══════════════ -->
+<div class="page" id="page-shop">
+  <div class="section">
+    <div class="max-w">
+      <div class="section-header">
+        <div>
+          <div class="section-label">Entire Collection</div>
+          <div class="section-title">ALL PRODUCTS</div>
+        </div>
+      </div>
+      <div class="product-grid" id="shop-grid">
+        <!-- injected by JS -->
+      </div>
+      <div id="shop-empty" style="text-align:center;padding:80px 24px;display:none">
+        <p style="font-family:var(--font-display);font-size:48px;color:var(--muted)">NO PRODUCTS YET</p>
+        <p style="font-size:11px;color:var(--muted);letter-spacing:2px;margin-top:8px">Check back soon for new drops</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ ABOUT PAGE ═══════════════ -->
+<div class="page" id="page-about">
+  <div class="about-hero">
+    <div class="about-bg">STORY</div>
+    <div style="text-align:center;position:relative;z-index:1;padding:24px">
+      <p style="font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-bottom:16px">Who We Are</p>
+      <h1 style="font-family:var(--font-display);font-size:clamp(48px,10vw,120px);letter-spacing:2px;line-height:1">OUR STORY</h1>
+    </div>
+  </div>
+  <div class="about-content">
+    <h2>Born From The Streets</h2>
+    <p>Drip Steps & Wordrobe started as a dream in 2026 — a vision to bring premium streetwear culture to Hathras at honest prices. We believe fashion is a form of self-expression, and every person deserves to express themselves with quality pieces that last.</p>
+    <p>Our collections are carefully curated, blending global streetwear aesthetics with an Indian sensibility. Each drop is limited, each design intentional. We don't do mass production — we do meaningful fashion.</p>
+    <p>From Instagram to your wardrobe, we're here to redefine what premium streetwear means in India. Simple orders, honest prices, real drip.</p>
+    <div class="about-stats">
+      <div class="stat-box"><span class="stat-num">100+</span><span class="stat-label">Happy Customers</span></div>
+      <div class="stat-box"><span class="stat-num">50+</span><span class="stat-label">Products Dropped</span></div>
+      <div class="stat-box"><span class="stat-num">HTR</span><span class="stat-label">Hathras, UP</span></div>
+    </div>
+    <h2>Our Values</h2>
+    <p>Quality over quantity. Every piece is checked before it reaches you. We source premium fabrics that look good and feel good — because you deserve both.</p>
+    <p>Follow us on Instagram <strong>@drip_steps__wordrobe</strong> for the latest drops, styling inspo, and exclusive pre-launch previews.</p>
+    <div style="margin-top:40px;display:flex;gap:12px;flex-wrap:wrap">
+      <a href="https://instagram.com/drip_steps__wordrobe" target="_blank" class="btn btn-primary">Follow Us ↗</a>
+      <a href="#" onclick="showPage('shop');return false" class="btn btn-secondary">Shop Now</a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ DELIVERY PAGE ═══════════════ -->
+<div class="page" id="page-delivery">
+  <div class="section">
+    <div class="max-w">
+      <div class="section-header">
+        <div>
+          <div class="section-label">Shipping Policy</div>
+          <div class="section-title">DELIVERY INFO</div>
+        </div>
+      </div>
+      <div class="delivery-grid">
+        <div class="delivery-card">
+          <span class="delivery-icon">📦</span>
+          <h3>CASH ON DELIVERY</h3>
+          <p>We only accept Cash on Delivery (COD). Pay when your order arrives at your doorstep. No online payment required. Simple and safe.</p>
+        </div>
+        <div class="delivery-card">
+          <span class="delivery-icon">🚀</span>
+          <h3>FAST SHIPPING</h3>
+          <p>Orders are processed within 24–48 hours of confirmation. Standard delivery takes 4–7 business days across India.</p>
+        </div>
+        <div class="delivery-card">
+          <span class="delivery-icon">📍</span>
+          <h3>HATHRAS ONLY</h3>
+          <p>We currently deliver only within Hathras, Uttar Pradesh — 204101. Local delivery, fast and reliable.</p>
+        </div>
+        <div class="delivery-card">
+          <span class="delivery-icon">💬</span>
+          <h3>WHATSAPP FIRST</h3>
+          <p>All orders are placed via WhatsApp. You'll receive a confirmation message with your order details once confirmed.</p>
+        </div>
+      </div>
+      <table class="delivery-table">
+        <thead><tr><th>Location</th><th>Delivery Time</th><th>Shipping</th></tr></thead>
+        <tbody>
+          <tr><td>Hathras City (204101)</td><td>Approx 1 Week</td><td>Free</td></tr>
+          <tr><td>Hathras District (nearby areas)</td><td>Approx 1 Week</td><td>Free</td></tr>
+          <tr><td>Outside Hathras</td><td>—</td><td>❌ Not Available</td></tr>
+        </tbody>
+      </table>
+      <div style="margin-top:24px;border:1px solid var(--warn);padding:20px 24px;display:flex;align-items:center;gap:16px">
+        <span style="font-size:28px">⚠️</span>
+        <div>
+          <p style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--warn);margin-bottom:4px;font-weight:500">Return & Exchange Policy</p>
+          <p style="font-size:12px;color:var(--muted);letter-spacing:.5px;line-height:1.7"><strong style="color:var(--white)">Only Exchange · No Return.</strong> Product exchange is allowed within 2 days of delivery in case of size issue or damage. No cash refunds will be provided under any circumstances.</p>
+        </div>
+      </div>
+      <div style="margin-top:48px;border:1px solid var(--line);padding:32px">
+        <h3 style="font-family:var(--font-display);font-size:36px;letter-spacing:2px;margin-bottom:16px">HOW TO ORDER</h3>
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <div style="display:flex;gap:16px;align-items:flex-start">
+            <span style="font-family:var(--font-display);font-size:48px;line-height:1;color:var(--muted)">01</span>
+            <div><p style="font-size:12px;letter-spacing:1px;font-weight:500;margin-bottom:4px;text-transform:uppercase">Browse & Pick</p><p style="font-size:11px;color:var(--muted)">Choose your product, size, and quantity from our Shop page.</p></div>
+          </div>
+          <div style="display:flex;gap:16px;align-items:flex-start">
+            <span style="font-family:var(--font-display);font-size:48px;line-height:1;color:var(--muted)">02</span>
+            <div><p style="font-size:12px;letter-spacing:1px;font-weight:500;margin-bottom:4px;text-transform:uppercase">Click Order on WhatsApp</p><p style="font-size:11px;color:var(--muted)">Fill your name, phone, and address. Click submit — it opens WhatsApp with your order pre-filled.</p></div>
+          </div>
+          <div style="display:flex;gap:16px;align-items:flex-start">
+            <span style="font-family:var(--font-display);font-size:48px;line-height:1;color:var(--muted)">03</span>
+            <div><p style="font-size:12px;letter-spacing:1px;font-weight:500;margin-bottom:4px;text-transform:uppercase">Confirmation & Dispatch</p><p style="font-size:11px;color:var(--muted)">We confirm your order and dispatch within 24–48 hours. Pay cash on delivery.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ CONTACT PAGE ═══════════════ -->
+<div class="page" id="page-contact">
+  <div class="contact-wrap">
+    <h1>LET'S TALK</h1>
+    <p>Got questions about sizing, delivery, or our products? Reach out anytime. We're always just a WhatsApp message away.</p>
+    <div class="contact-links">
+      <a href="https://wa.me/919999999999" target="_blank" class="contact-link" id="contact-wa">
+        <div><div class="contact-link-label">WhatsApp</div><div class="contact-link-value">+91 XXXXX XXXXX</div></div>
+        <div class="contact-link-arrow">↗</div>
+      </a>
+      <a href="https://instagram.com/drip_steps__wordrobe" target="_blank" class="contact-link">
+        <div><div class="contact-link-label">Instagram</div><div class="contact-link-value">@drip_steps__wordrobe</div></div>
+        <div class="contact-link-arrow">↗</div>
+      </a>
+      <a href="mailto:drip.steps.wordrobe@gmail.com" class="contact-link">
+        <div><div class="contact-link-label">Email</div><div class="contact-link-value">drip.steps.wordrobe@gmail.com</div></div>
+        <div class="contact-link-arrow">↗</div>
+      </a>
+    </div>
+    <p style="margin-top:32px;font-size:10px;color:var(--muted);letter-spacing:1px;line-height:1.8">Response time: Usually within 2–4 hours<br>Business hours: 10 AM – 9 PM (Mon–Sat)</p>
+  </div>
+</div>
+
+<!-- ═══════════════ MY ORDERS PAGE ═══════════════ -->
+<div class="page" id="page-orders">
+  <div class="section">
+    <div class="max-w">
+      <div class="section-header">
+        <div>
+          <div class="section-label">Track & Manage</div>
+          <div class="section-title">MY ORDERS</div>
+        </div>
+      </div>
+      <div id="orders-list">
+        <!-- injected by JS -->
+      </div>
+      <div id="orders-empty" style="text-align:center;padding:80px 24px;display:none">
+        <p style="font-family:var(--font-display);font-size:48px;color:var(--muted)">NO ORDERS YET</p>
+        <p style="font-size:11px;color:var(--muted);letter-spacing:2px;margin-top:8px">Place an order from the Shop to see it here</p>
+        <a href="#" onclick="showPage('shop');return false" class="btn btn-primary" style="margin-top:24px">Shop Now</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ ADMIN PAGE ═══════════════ -->
+<div class="page" id="page-admin">
+  <!-- LOGIN -->
+  <div class="admin-login" id="admin-login-section">
+    <div class="admin-login-box">
+      <h2>ADMIN</h2>
+      <p>Drip Steps & Wordrobe · Secure Access</p>
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <input type="password" class="form-input" id="admin-pwd" placeholder="Enter admin password" onkeydown="if(event.key==='Enter')adminLogin()"/>
+      </div>
+      <div class="login-error" id="login-error">Incorrect password. Try again.</div>
+      <button class="btn btn-primary" style="width:100%;margin-top:16px;justify-content:center" onclick="adminLogin()">Access Dashboard</button>
+    </div>
+  </div>
+
+  <!-- PANEL -->
+  <div class="admin-panel" id="admin-panel-section" style="display:none">
+    <div class="admin-topbar">
+      <h2>DASHBOARD</h2>
+      <div class="admin-topbar-right">
+        <div style="font-size:9px;color:var(--muted);letter-spacing:2px">Drip Steps & Wordrobe</div>
+        <button class="admin-btn admin-btn-neutral" onclick="adminLogout()">Logout</button>
+      </div>
+    </div>
+
+    <!-- Settings section for WhatsApp number -->
+    <div style="border:1px solid var(--line);padding:16px;margin-bottom:24px;display:flex;flex-wrap:wrap;align-items:center;gap:12px">
+      <span style="font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted)">Your WhatsApp:</span>
+      <input type="tel" id="wa-number-input" class="form-input" style="max-width:200px;padding:8px 12px;font-size:12px" placeholder="91XXXXXXXXXX" value=""/>
+      <button class="admin-btn admin-btn-neutral" onclick="saveWaNumber()">Save Number</button>
+      <span style="font-size:9px;color:var(--muted)">Include country code e.g. 919876543210</span>
+    </div>
+
+    <div class="admin-tabs">
+      <button class="admin-tab active" onclick="switchAdminTab('add')">+ Add Product</button>
+      <button class="admin-tab" onclick="switchAdminTab('manage')">Manage Products</button>
+    </div>
+
+    <!-- ADD PRODUCT -->
+    <div class="admin-section active" id="admin-tab-add">
+      <div class="add-product-form">
+        <h3 style="font-family:var(--font-display);font-size:32px;letter-spacing:2px;margin-bottom:24px">ADD NEW PRODUCT</h3>
+        <div style="display:flex;gap:24px;flex-wrap:wrap">
+          <div style="flex:0 0 auto">
+            <label class="form-label">Product Image</label>
+            <div class="img-upload-area" id="upload-area" onclick="document.getElementById('img-file').click()">
+              <input type="file" id="img-file" class="img-file-input" accept="image/*" onchange="previewImage(this)"/>
+              <span class="upload-icon">📷</span>
+              <span class="upload-hint">Tap to upload<br/>image</span>
+            </div>
+          </div>
+          <div style="flex:1;min-width:240px;display:flex;flex-direction:column;gap:16px">
+            <div class="form-group" style="margin:0">
+              <label class="form-label">Product Name *</label>
+              <input type="text" class="form-input" id="prod-name" placeholder="e.g. Street Legend Tee"/>
+            </div>
+            <div class="form-row" style="margin:0">
+              <div class="form-group" style="margin:0">
+                <label class="form-label">Price (₹) *</label>
+                <input type="number" class="form-input" id="prod-price" placeholder="599"/>
+              </div>
+              <div class="form-group" style="margin:0">
+                <label class="form-label">Badge</label>
+                <select class="form-select" id="prod-badge">
+                  <option value="">None</option>
+                  <option value="new">NEW</option>
+                  <option value="hot">HOT</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group" style="margin:0">
+              <label class="form-label">Stock / No. of Pieces *</label>
+              <input type="number" class="form-input" id="prod-stock" placeholder="e.g. 10" min="0"/>
+            </div>
+            <div class="form-group" style="margin:0">
+              <label class="form-label">Available Sizes *</label>
+              <div class="size-checkboxes" id="size-checkboxes">
+                <div class="size-check-label" onclick="toggleSizeCheck(this,'XS')">XS</div>
+                <div class="size-check-label" onclick="toggleSizeCheck(this,'S')">S</div>
+                <div class="size-check-label" onclick="toggleSizeCheck(this,'M')">M</div>
+                <div class="size-check-label" onclick="toggleSizeCheck(this,'L')">L</div>
+                <div class="size-check-label" onclick="toggleSizeCheck(this,'XL')">XL</div>
+                <div class="size-check-label" onclick="toggleSizeCheck(this,'XXL')">XXL</div>
+              </div>
+            </div>
+            <div class="form-group" style="margin:0">
+              <label class="form-label">Description (optional)</label>
+              <textarea class="form-textarea" id="prod-desc" placeholder="Short product description..."></textarea>
+            </div>
+            <div class="form-group" style="margin:0">
+              <label class="form-label">Show in Featured Section?</label>
+              <div style="display:flex;gap:8px">
+                <label class="size-check-label" id="feat-yes" onclick="toggleFeatured('yes')">Yes</label>
+                <label class="size-check-label" id="feat-no" onclick="toggleFeatured('no')">No</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:24px;display:flex;gap:12px">
+          <button class="btn btn-primary" onclick="addProduct()">Add Product</button>
+          <button class="btn btn-secondary" onclick="clearProductForm()">Clear Form</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MANAGE PRODUCTS -->
+    <div class="admin-section" id="admin-tab-manage">
+      <div style="margin-bottom:20px;font-size:9px;color:var(--muted);letter-spacing:2px;text-transform:uppercase" id="product-count">Loading...</div>
+      <div class="admin-product-list" id="admin-product-list">
+        <!-- injected by JS -->
+      </div>
+      <div id="admin-empty" style="text-align:center;padding:60px;display:none;border:1px solid var(--line)">
+        <p style="font-family:var(--font-display);font-size:36px;color:var(--muted)">NO PRODUCTS ADDED YET</p>
+        <p style="font-size:10px;color:var(--muted);letter-spacing:2px;margin-top:8px">Use the "Add Product" tab to add your first product</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ ORDER MODAL ═══════════════ -->
+<div class="modal-bg" id="order-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <div>
+        <div class="modal-title">ORDER</div>
+        <div class="modal-product-name" id="modal-product-name">Product Name</div>
+      </div>
+      <button class="modal-close" onclick="closeOrderModal()">✕</button>
+    </div>
+    
+    <div class="form-group">
+      <label class="form-label">Your Full Name *</label>
+      <input type="text" class="form-input" id="order-name" placeholder="e.g. Rahul Sharma"/>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Phone Number *</label>
+      <input type="tel" class="form-input" id="order-phone" placeholder="+91 XXXXX XXXXX"/>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Delivery Address *</label>
+      <textarea class="form-textarea" id="order-address" placeholder="Full address with city, state & PIN code"></textarea>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Select Size *</label>
+      <div class="size-selector" id="modal-size-selector">
+        <!-- injected on open -->
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Quantity</label>
+      <select class="form-select" id="order-qty">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Any Special Note (optional)</label>
+      <input type="text" class="form-input" id="order-note" placeholder="e.g. Please pack it nicely"/>
+    </div>
+    
+    <button class="whatsapp-submit" onclick="submitOrder()">
+      💬 Send Order on WhatsApp
+    </button>
+    <div class="form-note">💰 Cash on Delivery · No advance payment required<br>Your order details will open in WhatsApp automatically</div>
+  </div>
+</div>
+
+<script>
+// ─── SUPABASE CONFIG ───
+const SB_URL = 'https://ommjsygfwtncrlumhibr.supabase.co/rest/v1';
+const SB_KEY = 'sb_publishable_MdazFKds1XaOrLt4kZ0yfg_YcDPCVnd';
+const ADMIN_PASSWORD = 'Drip2024';
+let WA_NUMBER = localStorage.getItem('ds_wa_number') || '919999999999';
+
+// ─── STATE ───
+let currentOrderProduct = null;
+let selectedSize = '';
+let isFeatured = false;
+let currentImageData = '';
+let editingProductId = null;
+
+// ─── SUPABASE FETCH ───
+async function sb(table, opts={}) {
+  const {method='GET', q='', body=null} = opts;
+  const url = `${SB_URL}/${table}${q?'?'+q:''}`;
+  const h = {'apikey':SB_KEY,'Authorization':`Bearer ${SB_KEY}`,'Content-Type':'application/json'};
+  if(method==='POST'||method==='PATCH') h['Prefer']='return=representation';
+  const res = await fetch(url,{method,headers:h,body:body?JSON.stringify(body):null});
+  if(!res.ok){console.error('SB err',res.status,await res.text());throw new Error('API '+res.status);}
+  if(method==='DELETE') return [];
+  const text = await res.text();
+  return text ? JSON.parse(text) : [];
+}
+
+// ─── PRODUCT MAPPERS ───
+function fromDB(r){return{id:r.id,name:r.name,price:r.price,badge:r.badge||'',desc:r.description||'',sizes:r.sizes||[],stock:r.stock,featured:r.featured,image:r.image||'',soldOut:r.sold_out,addedAt:r.added_at};}
+function toDB(p){const o={};if(p.id!==undefined)o.id=p.id;if(p.name!==undefined)o.name=p.name;if(p.price!==undefined)o.price=p.price;if(p.badge!==undefined)o.badge=p.badge;if(p.desc!==undefined)o.description=p.desc;if(p.sizes!==undefined)o.sizes=p.sizes;if(p.stock!==undefined)o.stock=p.stock;if(p.featured!==undefined)o.featured=p.featured;if(p.image!==undefined)o.image=p.image;if(p.soldOut!==undefined)o.sold_out=p.soldOut;if(p.addedAt!==undefined)o.added_at=p.addedAt;return o;}
+
+// ─── PRODUCTS CRUD ───
+async function getProducts(){try{const d=await sb('products',{q:'select=*&order=added_at.desc'});return(d||[]).map(fromDB);}catch(e){console.error(e);return[];}}
+async function createProductAPI(p){return sb('products',{method:'POST',body:toDB(p)});}
+async function updateProductAPI(id,u){return sb('products',{method:'PATCH',q:`id=eq.${id}`,body:toDB(u)});}
+async function deleteProductAPI(id){return sb('products',{method:'DELETE',q:`id=eq.${id}`});}
+
+// ─── ORDERS CRUD ───
+function orderFromDB(r){return{id:r.id,productId:r.product_id,productName:r.product_name,size:r.size,qty:r.qty,price:r.price,total:r.total,customerName:r.customer_name,phone:r.phone,address:r.address,note:r.note||'',status:r.status,placedAt:r.placed_at};}
+async function getOrders(){try{const d=await sb('orders',{q:'select=*&order=placed_at.desc'});return(d||[]).map(orderFromDB);}catch(e){console.error(e);return[];}}
+async function createOrderAPI(o){return sb('orders',{method:'POST',body:{id:o.id,product_id:o.productId,product_name:o.productName,size:o.size,qty:o.qty,price:o.price,total:o.total,customer_name:o.customerName,phone:o.phone,address:o.address,note:o.note,status:o.status,placed_at:o.placedAt}});}
+async function updateOrderAPI(id,u){return sb('orders',{method:'PATCH',q:`id=eq.${id}`,body:u});}
+
+// ─── CURSOR ───
+const cursor=document.getElementById('cursor');const ring=document.getElementById('cursor-ring');
+document.addEventListener('mousemove',e=>{cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px';setTimeout(()=>{ring.style.left=e.clientX+'px';ring.style.top=e.clientY+'px';},80);});
+document.addEventListener('mousedown',()=>{cursor.style.width='8px';cursor.style.height='8px';});
+document.addEventListener('mouseup',()=>{cursor.style.width='16px';cursor.style.height='16px';});
+if('ontouchstart' in window) document.body.classList.add('touch');
+
+// ─── NAVIGATION ───
+async function showPage(page){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a=>{a.classList.toggle('active',a.dataset.page===page);});
+  const el=document.getElementById('page-'+page);
+  if(el){el.classList.add('active');window.scrollTo(0,0);}
+  if(page==='shop') await renderShop();
+  if(page==='home') await renderHome();
+  if(page==='orders') await renderOrders();
+  if(page==='admin') await initAdmin();
+  initReveal();
+}
+function toggleMenu(){const h=document.getElementById('hamburger');const m=document.getElementById('mobileMenu');h.classList.toggle('open');m.classList.toggle('open');}
+
+// ─── REVEAL ANIMATION ───
+function initReveal(){setTimeout(()=>{const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.1});document.querySelectorAll('.reveal:not(.visible)').forEach(el=>obs.observe(el));},50);}
+
+// ─── PRODUCT CARD RENDER ───
+function renderCard(product){
+  const stock=typeof product.stock==='number'?product.stock:999;
+  const isOOS=product.soldOut||stock<=0;
+  const badgeHtml=product.badge?`<div class="product-badge badge-${product.badge}">${product.badge.toUpperCase()}</div>`:'';
+  const soldOverlay=isOOS?`<div class="sold-overlay"><span>OUT OF STOCK</span></div>`:'';
+  const imgHtml=product.image?`<img src="${product.image}" alt="${product.name}" loading="lazy"/>`:`<div class="product-img-placeholder"><div class="ph-icon">👕</div><div class="ph-text">No Image</div></div>`;
+  const sizesHtml=(product.sizes||[]).map(s=>`<button class="size-chip" onclick="selectCardSize('${product.id}','${s}',this)" data-size="${s}">${s}</button>`).join('');
+  let stockClass='in-stock',stockText=`${stock} pieces available`;
+  if(isOOS){stockClass='no-stock';stockText='Out of stock';}else if(stock<=5){stockClass='low-stock';stockText=`Only ${stock} left!`;}
+  const stockHtml=`<div class="product-stock ${isOOS?'out':''}"><span class="stock-dot ${stockClass}"></span><span class="stock-count">${stockText}</span></div>`;
+  const orderBtn=isOOS?`<button class="btn btn-secondary btn-sm" style="flex:1;opacity:.4;pointer-events:none;justify-content:center">Out of Stock</button>`:`<button class="btn btn-whatsapp btn-sm" style="flex:1;justify-content:center" onclick="openOrderModal('${product.id}')">💬 Order on WhatsApp</button>`;
+  return `<div class="product-card reveal" id="card-${product.id}" data-selected-size=""><div class="product-img-wrap">${badgeHtml}${imgHtml}${soldOverlay}</div><div class="product-info"><div class="product-name">${product.name}</div><div class="product-price">₹${Number(product.price).toLocaleString('en-IN')}</div>${stockHtml}<span class="size-label">Select Size:</span><div class="product-sizes" id="sizes-${product.id}">${sizesHtml}</div><div class="product-actions">${orderBtn}</div></div></div>`;
+}
+
+// ─── RENDER HOME ───
+async function renderHome(){
+  const products=await getProducts();
+  const featured=products.filter(p=>p.featured&&!p.soldOut&&p.stock>0);
+  const newest=[...products].slice(0,4);
+  const fg=document.getElementById('featured-grid');const ng=document.getElementById('new-arrivals-grid');
+  if(fg) fg.innerHTML=featured.length?featured.slice(0,4).map(p=>renderCard(p)).join(''):'<div style="grid-column:1/-1;text-align:center;padding:60px;color:var(--muted);font-size:11px;letter-spacing:2px;text-transform:uppercase">New drops coming soon...</div>';
+  if(ng) ng.innerHTML=newest.length?newest.map(p=>renderCard(p)).join(''):'<div style="grid-column:1/-1;text-align:center;padding:60px;color:var(--muted);font-size:11px;letter-spacing:2px;text-transform:uppercase">No arrivals yet...</div>';
+  initReveal();
+}
+
+// ─── RENDER SHOP ───
+async function renderShop(){
+  const products=await getProducts();
+  const grid=document.getElementById('shop-grid');const empty=document.getElementById('shop-empty');
+  if(!grid)return;
+  if(!products.length){grid.innerHTML='';empty.style.display='block';}
+  else{empty.style.display='none';grid.innerHTML=products.map(p=>renderCard(p)).join('');initReveal();}
+}
+
+// ─── SELECT SIZE ON CARD ───
+function selectCardSize(productId,size,btn){
+  document.querySelectorAll(`#sizes-${productId} .size-chip`).forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  const card=document.getElementById('card-'+productId);
+  if(card)card.dataset.selectedSize=size;
+}
+
+// ─── ORDER MODAL ───
+async function openOrderModal(productId){
+  const products=await getProducts();
+  const product=products.find(p=>p.id===productId);
+  if(!product||product.soldOut||(typeof product.stock==='number'&&product.stock<=0)){showToast('This product is out of stock');return;}
+  const card=document.getElementById('card-'+productId);
+  const preSelected=card?card.dataset.selectedSize:'';
+  if(!preSelected){showToast('⬆️ Pehle size select karo!');const sizesEl=document.getElementById('sizes-'+productId);if(sizesEl){sizesEl.style.outline='1px solid var(--warn)';setTimeout(()=>{sizesEl.style.outline='';},1500);}return;}
+  currentOrderProduct=product;selectedSize=preSelected;
+  document.getElementById('modal-product-name').textContent=`${product.name} — ₹${Number(product.price).toLocaleString('en-IN')}`;
+  document.getElementById('order-name').value='';document.getElementById('order-phone').value='';document.getElementById('order-address').value='';document.getElementById('order-note').value='';document.getElementById('order-qty').value='1';
+  const ss=document.getElementById('modal-size-selector');
+  ss.innerHTML=(product.sizes||[]).map(s=>`<button class="size-btn ${s===preSelected?'active':''}" onclick="selectSize('${s}',this)">${s}</button>`).join('');
+  document.getElementById('order-modal').classList.add('open');document.body.style.overflow='hidden';
+}
+function closeOrderModal(){document.getElementById('order-modal').classList.remove('open');document.body.style.overflow='';}
+function selectSize(size,btn){selectedSize=size;document.querySelectorAll('.size-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}
+
+// ─── SUBMIT ORDER ───
+async function submitOrder(){
+  const name=document.getElementById('order-name').value.trim();
+  const phone=document.getElementById('order-phone').value.trim();
+  const address=document.getElementById('order-address').value.trim();
+  const qty=Number(document.getElementById('order-qty').value);
+  const note=document.getElementById('order-note').value.trim();
+  if(!name){showToast('Please enter your name');return;}
+  if(!phone){showToast('Please enter your phone number');return;}
+  if(!address){showToast('Please enter delivery address');return;}
+  if(!selectedSize){showToast('Please select a size');return;}
+  const product=currentOrderProduct;
+  try{
+    const products=await getProducts();
+    const live=products.find(p=>p.id===product.id);
+    if(live&&typeof live.stock==='number'){
+      if(live.stock<qty){showToast(`Only ${live.stock} pieces left!`);return;}
+      const newStock=live.stock-qty;
+      await updateProductAPI(live.id,{stock:newStock,soldOut:newStock<=0});
+    }
+    const total=Number(product.price)*qty;
+    const orderId='ORD-'+Date.now().toString(36).toUpperCase();
+    const order={id:orderId,productId:product.id,productName:product.name,size:selectedSize,qty,price:Number(product.price),total,customerName:name,phone,address,note,status:'active',placedAt:Date.now()};
+    await createOrderAPI(order);
+    const msg=`🛍️ *NEW ORDER — Drip Steps & Wordrobe*\n\n━━━━━━━━━━━━━━━━━━\n*Order ID:* ${orderId}\n*Product:* ${product.name}\n*Size:* ${selectedSize}\n*Quantity:* ${qty}\n*Price:* ₹${Number(product.price).toLocaleString('en-IN')} × ${qty} = ₹${total.toLocaleString('en-IN')}\n━━━━━━━━━━━━━━━━━━\n*Customer Name:* ${name}\n*Phone:* ${phone}\n*Address:* ${address}\n${note?`*Note:* ${note}`:''}\n━━━━━━━━━━━━━━━━━━\n💰 Payment: Cash on Delivery (COD)\n📦 Order placed via drip-steps-wordrobe.store`;
+    const waUrl=`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
+    window.open(waUrl,'_blank');
+    closeOrderModal();showToast('Order placed! ID: '+orderId);
+    await renderHome();await renderShop();
+  }catch(e){console.error(e);showToast('Error placing order. Try again.');}
+}
+
+// ─── RENDER ORDERS ───
+async function renderOrders(){
+  const orders=await getOrders();
+  const list=document.getElementById('orders-list');const empty=document.getElementById('orders-empty');
+  if(!list)return;
+  if(!orders.length){list.innerHTML='';empty.style.display='block';return;}
+  empty.style.display='none';
+  list.innerHTML=orders.map(o=>{
+    const date=new Date(o.placedAt).toLocaleString('en-IN',{day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'});
+    const cancelBtn=o.status==='active'?`<button class="cancel-btn" onclick="cancelOrder('${o.id}')">✕ Cancel Order</button>`:'';
+    return `<div class="order-card status-${o.status}"><div class="order-top"><div><div class="order-id">${o.id}</div><div style="font-size:9px;color:var(--muted);letter-spacing:1px;margin-top:2px">${date}</div></div><span class="order-status-badge ${o.status}">${o.status==='active'?'● Active':'● Cancelled'}</span></div><div class="order-details"><div class="order-detail-item">Product<strong>${o.productName}</strong></div><div class="order-detail-item">Size<strong>${o.size}</strong></div><div class="order-detail-item">Qty<strong>${o.qty}</strong></div><div class="order-detail-item">Total<strong>₹${o.total.toLocaleString('en-IN')}</strong></div></div><div style="display:flex;justify-content:flex-end">${cancelBtn}</div></div>`;
+  }).join('');
+}
+
+// ─── CANCEL ORDER ───
+async function cancelOrder(orderId){
+  if(!confirm('Are you sure you want to cancel this order?'))return;
+  try{
+    const orders=await getOrders();const order=orders.find(o=>o.id===orderId);
+    if(!order||order.status!=='active')return;
+    await updateOrderAPI(orderId,{status:'cancelled'});
+    const products=await getProducts();const product=products.find(p=>p.id===order.productId);
+    if(product&&typeof product.stock==='number'){
+      await updateProductAPI(product.id,{stock:product.stock+order.qty,soldOut:false});
+    }
+    await renderOrders();await renderHome();await renderShop();
+    showToast('Order cancelled. Stock restored ✓');
+  }catch(e){console.error(e);showToast('Error cancelling order');}
+}
+
+// ─── ADMIN ───
+async function initAdmin(){
+  const isLoggedIn=sessionStorage.getItem('dsw_admin')==='true';
+  document.getElementById('admin-login-section').style.display=isLoggedIn?'none':'flex';
+  document.getElementById('admin-panel-section').style.display=isLoggedIn?'block':'none';
+  if(isLoggedIn){document.getElementById('wa-number-input').value=WA_NUMBER;await renderAdminProducts();}
+}
+function adminLogin(){
+  const pwd=document.getElementById('admin-pwd').value;
+  if(pwd===ADMIN_PASSWORD){
+    sessionStorage.setItem('dsw_admin','true');
+    document.getElementById('admin-login-section').style.display='none';
+    document.getElementById('admin-panel-section').style.display='block';
+    document.getElementById('wa-number-input').value=WA_NUMBER;
+    renderAdminProducts();
+  }else{document.getElementById('login-error').style.display='block';document.getElementById('admin-pwd').value='';setTimeout(()=>document.getElementById('login-error').style.display='none',3000);}
+}
+function adminLogout(){sessionStorage.removeItem('dsw_admin');initAdmin();showToast('Logged out successfully');}
+function saveWaNumber(){const num=document.getElementById('wa-number-input').value.replace(/\D/g,'');if(!num||num.length<10){showToast('Enter valid number with country code');return;}WA_NUMBER=num;localStorage.setItem('ds_wa_number',num);document.querySelectorAll('#footer-wa,#contact-wa').forEach(el=>el.href=`https://wa.me/${num}`);showToast('WhatsApp number saved ✓');}
+function switchAdminTab(tab){document.querySelectorAll('.admin-tab').forEach((t,i)=>{const tabs=['add','manage'];t.classList.toggle('active',tabs[i]===tab);});document.querySelectorAll('.admin-section').forEach(s=>s.classList.remove('active'));document.getElementById('admin-tab-'+tab).classList.add('active');if(tab==='manage')renderAdminProducts();}
+function toggleSizeCheck(el,size){el.classList.toggle('checked');el.dataset.size=size;}
+function toggleFeatured(val){isFeatured=val==='yes';document.getElementById('feat-yes').classList.toggle('checked',val==='yes');document.getElementById('feat-no').classList.toggle('checked',val==='no');}
+function previewImage(input){if(!input.files[0])return;const reader=new FileReader();reader.onload=e=>{currentImageData=e.target.result;const area=document.getElementById('upload-area');let img=area.querySelector('img.preview-img');if(!img){img=document.createElement('img');img.className='preview-img';area.appendChild(img);}img.src=currentImageData;area.querySelector('.upload-icon').style.display='none';area.querySelector('.upload-hint').style.display='none';};reader.readAsDataURL(input.files[0]);}
+
+// ─── ADD PRODUCT ───
+async function addProduct(){
+  const name=document.getElementById('prod-name').value.trim();
+  const price=document.getElementById('prod-price').value.trim();
+  const badge=document.getElementById('prod-badge').value;
+  const desc=document.getElementById('prod-desc').value.trim();
+  const stockVal=document.getElementById('prod-stock').value.trim();
+  const sizes=Array.from(document.querySelectorAll('#size-checkboxes .size-check-label.checked')).map(l=>l.dataset.size);
+  if(!name){showToast('Product name is required');return;}
+  if(!price||isNaN(price)||Number(price)<=0){showToast('Enter a valid price');return;}
+  if(!sizes.length){showToast('Select at least one size');return;}
+  if(!stockVal||isNaN(stockVal)||Number(stockVal)<0){showToast('Enter valid stock quantity');return;}
+  const stock=Number(stockVal);const id=editingProductId||'p_'+Date.now();
+  const productData={id,name,price:Number(price),badge,desc,sizes,stock,featured:isFeatured,image:currentImageData,soldOut:stock<=0,addedAt:Date.now()};
+  try{
+    if(editingProductId){await updateProductAPI(id,productData);editingProductId=null;}
+    else{await createProductAPI(productData);}
+    clearProductForm();showToast('Product saved ✓');await renderHome();
+  }catch(e){console.error(e);showToast('Error saving product');}
+}
+
+function clearProductForm(){
+  document.getElementById('prod-name').value='';document.getElementById('prod-price').value='';document.getElementById('prod-badge').value='';document.getElementById('prod-desc').value='';document.getElementById('prod-stock').value='';
+  document.querySelectorAll('#size-checkboxes .size-check-label').forEach(l=>l.classList.remove('checked'));
+  document.getElementById('feat-yes').classList.remove('checked');document.getElementById('feat-no').classList.remove('checked');
+  currentImageData='';editingProductId=null;
+  const area=document.getElementById('upload-area');const img=area.querySelector('.preview-img');if(img)img.remove();
+  area.querySelector('.upload-icon').style.display='';area.querySelector('.upload-hint').style.display='';
+  document.getElementById('img-file').value='';isFeatured=false;
+}
+
+// ─── ADMIN PRODUCT LIST ───
+async function renderAdminProducts(){
+  const products=await getProducts();
+  const list=document.getElementById('admin-product-list');const empty=document.getElementById('admin-empty');const count=document.getElementById('product-count');
+  count.textContent=`${products.length} product${products.length!==1?'s':''} total`;
+  if(!products.length){list.innerHTML='';empty.style.display='block';return;}
+  empty.style.display='none';
+  list.innerHTML=products.map(p=>`<div class="admin-product-card"><div class="admin-product-img">${p.image?`<img src="${p.image}" alt="${p.name}" loading="lazy"/>`:`<div class="no-img">No Image</div>`}</div><div class="admin-product-info"><div class="ap-name">${p.name}</div><div class="ap-price">₹${Number(p.price).toLocaleString('en-IN')}</div><div class="ap-status ${p.soldOut||p.stock<=0?'status-sold':'status-available'}">${p.soldOut||p.stock<=0?'● Out of Stock':'● Available'} · Stock: ${typeof p.stock==='number'?p.stock:'N/A'}${p.featured?' · Featured':''}${p.badge?' · '+p.badge.toUpperCase():''}</div><div style="font-size:9px;color:var(--muted);margin-bottom:10px;letter-spacing:1px">Sizes: ${(p.sizes||[]).join(', ')}</div><div class="admin-actions"><button class="admin-btn admin-btn-warn" onclick="toggleSoldOut('${p.id}')">${p.soldOut?'Restock':'Sold Out'}</button><button class="admin-btn admin-btn-neutral" onclick="editProduct('${p.id}')">Edit</button><button class="admin-btn admin-btn-danger" onclick="deleteProduct('${p.id}')">Delete</button></div></div></div>`).join('');
+}
+
+async function toggleSoldOut(id){
+  try{
+    const products=await getProducts();const p=products.find(x=>x.id===id);if(!p)return;
+    const newSold=!p.soldOut;
+    await updateProductAPI(id,{soldOut:newSold,stock:newSold?0:p.stock});
+    await renderAdminProducts();await renderHome();
+    showToast(`Marked as ${newSold?'Sold Out':'Available'} ✓`);
+  }catch(e){console.error(e);showToast('Error updating product');}
+}
+
+async function deleteProduct(id){
+  if(!confirm('Delete this product permanently?'))return;
+  try{await deleteProductAPI(id);await renderAdminProducts();await renderHome();showToast('Product deleted');}
+  catch(e){console.error(e);showToast('Error deleting product');}
+}
+
+async function editProduct(id){
+  const products=await getProducts();const p=products.find(x=>x.id===id);if(!p)return;
+  switchAdminTab('add');editingProductId=id;
+  document.getElementById('prod-name').value=p.name;document.getElementById('prod-price').value=p.price;
+  document.getElementById('prod-badge').value=p.badge||'';document.getElementById('prod-desc').value=p.desc||'';
+  document.getElementById('prod-stock').value=typeof p.stock==='number'?p.stock:'';
+  document.querySelectorAll('#size-checkboxes .size-check-label').forEach(l=>{l.classList.toggle('checked',(p.sizes||[]).includes(l.dataset.size));});
+  isFeatured=p.featured||false;
+  document.getElementById('feat-yes').classList.toggle('checked',isFeatured);document.getElementById('feat-no').classList.toggle('checked',!isFeatured);
+  if(p.image){currentImageData=p.image;const area=document.getElementById('upload-area');let img=area.querySelector('.preview-img');if(!img){img=document.createElement('img');img.className='preview-img';area.appendChild(img);}img.src=p.image;area.querySelector('.upload-icon').style.display='none';area.querySelector('.upload-hint').style.display='none';}
+  window.scrollTo(0,0);showToast('Editing product — make changes and save');
+}
+
+// ─── TOAST ───
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
+
+// ─── MODAL CLOSE ON BG ───
+document.getElementById('order-modal').addEventListener('click',function(e){if(e.target===this)closeOrderModal();});
+
+// ─── INIT ───
+document.addEventListener('DOMContentLoaded',async()=>{
+  await renderHome();initReveal();
+  if(WA_NUMBER){document.querySelectorAll('#footer-wa,#contact-wa').forEach(el=>el.href=`https://wa.me/${WA_NUMBER}`);document.querySelector('#contact-wa .contact-link-value').textContent=`+${WA_NUMBER.slice(0,2)} ${WA_NUMBER.slice(2,7)} ${WA_NUMBER.slice(7)}`;}
+});
+
+</script>
+</body>
+</html>
